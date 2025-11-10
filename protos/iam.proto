@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option php_namespace = "Proto\\IamService";
+option php_metadata_namespace = "Proto\\Metadata";
+
+package IamServicePackage;
+
+service IamService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+  rpc LoginUser (UserLoginRequest) returns (UserLoginResponse);
+}
+
+// Request Messages ================================================================================================================
+message GetUserRequest {
+  int32 id = 1;
+}
+
+message UserLoginRequest { 
+  string email = 1;
+  string password = 2;
+  optional string confirm_password = 3;
+}
+
+// Response Messages ================================================================================================================
+message UserLoginResponse {
+  optional string access_token = 1;
+  optional string token_type = 2;
+  optional int32 expires_in = 3;
+  int32 response_code = 4;
+}
+
+message GetUserResponse {
+  string name = 1;
+  string username = 2;
+  string email = 3;
+  string mobile = 4;
+  int32 response_code = 5;
+}

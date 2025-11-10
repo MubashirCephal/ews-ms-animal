@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+option php_namespace = "Proto\\RbacService";
+option php_metadata_namespace = "Proto\\Metadata";
+
+package RbacServicePackage;
+
+service RbacService { 
+  rpc GetClaims (GetClaimsRequest) returns (GetClaimsResponse);
+
+  rpc CreateService (CreateServiceInRegistryRequest) returns (CreateServiceInRegistryResponse);
+  rpc UpdateService (UpdateServiceInRegistryRequest) returns (UpdateServiceInRegistryResponse);
+
+  rpc CreateRole (CreateRoleRequest) returns (CreateRoleResponse);
+  rpc UpdateRole (UpdateRoleRequest) returns (UpdateRoleResponse);
+  
+  rpc CreatePermission (CreatePermissionRequest) returns (CreatePermissionResponse);
+  rpc UpdatePermission (UpdatePermissionRequest) returns (UpdatePermissionResponse);
+
+  rpc CreateRoleUser (CreateRoleUserRequest) returns (CreateRoleUserResponse);
+  rpc UpdateRoleUser (UpdateRoleUserRequest) returns (UpdateRoleUserResponse);
+}
+
+// Request Messages ================================================================================================================
+message GetClaimsRequest {
+  // None-Required
+}
+
+message CreateServiceInRegistryRequest {
+  string name = 1;
+}
+
+message UpdateServiceInRegistryRequest {
+  string service_id = 1;
+  string name = 2;
+}
+
+
+message CreateRoleRequest {
+  string title = 1;
+  optional string description = 2;
+}
+
+message UpdateRoleRequest {
+  int32 id = 1;
+  string title = 2;
+  optional string description = 3;
+}
+
+message CreatePermissionRequest {
+  string title = 1;
+  repeated string claims = 2;
+  optional string description = 3;
+  int32 role_id = 4;
+}
+
+message UpdatePermissionRequest {
+  int32 id = 1;
+  string title = 2;
+  repeated string claims = 3;
+  optional string description = 4;
+  int32 role_id = 5;
+}
+
+message CreateRoleUserRequest {
+  int32 role_id = 1;
+  int32 user_id = 2;
+}
+
+message UpdateRoleUserRequest {
+  int32 id = 1;
+  int32 role_id = 2;
+  int32 user_id = 3;
+}
+
+
+// Response Messages ================================================================================================================
+message GetClaimsResponse {
+  repeated string claims = 1;
+  int32 response_code = 2;
+}
+
+message CreateServiceInRegistryResponse {
+  string service_id = 1;
+  int32 response_code = 2;
+}
+
+message UpdateServiceInRegistryResponse { 
+  string service_id = 1;
+  int32 response_code = 2;
+}
+
+message CreateRoleResponse {
+  int32 id = 1;
+  string title = 2;
+  optional string description = 3;
+  int32 response_code = 4;
+}
+
+message UpdateRoleResponse {
+  int32 id = 1;
+  string title = 2;
+  optional string description = 3;
+  int32 response_code = 4;
+}
+
+message CreatePermissionResponse {
+  int32 id = 1;
+  string title = 2;
+  repeated string claims = 3;
+  optional string description = 4;
+  int32 response_code = 5;
+}
+
+message UpdatePermissionResponse {
+  int32 id = 1;
+  string title = 2;
+  repeated string claims = 3;
+  optional string description = 4;
+  int32 response_code = 5;
+}
+
+message CreateRoleUserResponse {
+  GetUserResponse user = 1;
+  int32 response_code = 2;
+}
+
+message UpdateRoleUserResponse {
+  int32 id = 1;
+  GetUserResponse user = 2;
+  int32 response_code = 3;
+}
+
+// From other proto, but can be reused
+message GetUserResponse {
+  int32 id = 1;
+  string name = 2;
+  string username = 3;
+  string email = 4;
+  string mobile = 5;
+  optional int32 response_code = 6;
+}
