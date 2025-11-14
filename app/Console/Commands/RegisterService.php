@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
-use Proto\RbacService\CreateServiceInRegistryRequest;
-use Proto\RbacService\RbacServiceClient;
-use Proto\RbacService\UpdateServiceInRegistryRequest;
+use Proto\RegistryService\CreateServiceInRegistryRequest;
+use Proto\RegistryService\UpdateServiceInRegistryRequest;
+use Proto\RegistryService\RegistryServiceClient;
 
 class RegisterService extends Command implements Isolatable
 {
@@ -27,38 +27,47 @@ class RegisterService extends Command implements Isolatable
     /**
      * Execute the console command.
      */
-    public function handle()
-    {
+    public function handle(){
         $name = $this->ask('What is the name of the service?');
 
         /**
          * Check if the service is already registered;
          * if so then; update the service registry
          */
-         
-        if(!$name){
+
+        if (!$name) {
             exit(1);
         }
 
-        if($serviceId = env('SERVICE_ID')){
+        if ($serviceId = env('SERVICE_ID')) {
             /** @disregard P1009 */
-            $client = new RbacServiceClient('127.0.0.1:50051', [
+            $client = new RegistryServiceClient('127.0.0.1:50051', [
                 'credentials' => \Grpc\ChannelCredentials::createInsecure(),
+                'update_metadata' => function ($metadata) {
+                    $metadata['registration_secret'] = [env('JWT_SECRET')];
+                    return $metadata;
+                }
             ]);
 
             $service = new UpdateServiceInRegistryRequest();
-            $service->setName(str()->camel($name));
-            $service->setServiceId($serviceId);
+            $service->setName(str()->ucfirst(str()->camel($name)));
+            $service->setId($serviceId);
 
             list($response, $status) = $client->UpdateService($service)->wait();
-        }else{
+        } else {
             /** @disregard P1009 */
-            $client = new RbacServiceClient('127.0.0.1:50051', [
+            $client = new RegistryServiceClient('127.0.0.1:50051', [
                 'credentials' => \Grpc\ChannelCredentials::createInsecure(),
+                'update_metadata' => function ($metadata) {
+                    $metadata['registration_secret'] = [env('JWT_SECRET')];
+                    return $metadata;
+                }
             ]);
 
+            
             $service = new CreateServiceInRegistryRequest();
-            $service->setName(str()->camel($name));
+            $service->setName(str()->ucfirst(str()->camel($name)));
+
 
             list($response, $status) = $client->CreateService($service)->wait();
         }
@@ -66,10 +75,12 @@ class RegisterService extends Command implements Isolatable
         /** @disregard P1011 */
         if ($status->code !== \Grpc\STATUS_OK) {
             $this->info('Service Registration Failed');
-        }
+        } else {
+            $service = $response->getService();
 
-        $this->info('Please add this to your .env file');
-        $this->info('SERVICE_ID="'.base64_decode($response->service_id).'"');
-        $this->info('SERVICE_PREFIX="'.str()->slug(str()->camel($name)).'"');
+            $this->info('Please add this to your .env file');
+            $this->info('SERVICE_ID="' . base64_decode($response->service->key) . '"');
+            $this->info('SERVICE_PREFIX="' . $response->service->prefix . '"');
+        }
     }
 }

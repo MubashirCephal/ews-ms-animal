@@ -4,6 +4,7 @@
 - Clone the repository
 - Setup the database
 - Make sure the IAM is up and running check the serve .env variables 
+- Get the `/protos` and `/Proto` files from the IAM to maintain consistency
 
 ### Setting up the service with your local IAM
 **Very Important** 
