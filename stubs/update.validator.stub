@@ -8,8 +8,7 @@ class UpdateRequestValidation extends GrpcValidator {
 
     static function rules(): array {
         return [
-            'id' => 'required|integer|exists:{{modelVarPlural}},id', // Primary key;
-            // rules;
+            'id' => 'required|integer|exists:{{modelVarPlural}},id',
         ];
     }
     

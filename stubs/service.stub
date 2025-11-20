@@ -79,7 +79,7 @@ class {{model}}Service implements {{model}}ServiceInterface {
         $repeated = [];
 
         foreach ($items as $item){
-            $repeated = [...$repeated, $item->toResource()->dto()['{{model}}']];
+            $repeated = [...$repeated, $item->toResource()->dto()['{{modelVar}}']];
         }
 
         return $repeated;
