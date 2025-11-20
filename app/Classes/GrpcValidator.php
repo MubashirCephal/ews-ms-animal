@@ -17,18 +17,21 @@ abstract class GrpcValidator {
         $data = (array) json_decode($request->serializeToJsonString());
         $fixedPayload = static::fixCasing($data);
 
+        # Get the array of all the booleans;
         $booleanArray = static::boolCheck(get_class($request));
 
         if(count($booleanArray) != 0){
             foreach($booleanArray as $bool){
-                $fixedPayload[$bool] = $fixedPayload[$bool] ?? false;
+                if(!key_exists($bool, $fixedPayload) || $fixedPayload[$bool] != true){
+                    $fixedPayload[$bool] = false;
+                }
             }
         }
 
         return Validator::make($fixedPayload, static::rules())->validate();
     }
 
-    # gRPC for some reason changes field name - casing;
+    # gRPC for some reason changes field name casing;
     public static function fixCasing(array $data) : array {
         $fixed = [];
         foreach($data as $key => $value) {
@@ -39,17 +42,17 @@ abstract class GrpcValidator {
     }
 
     # Check for casting;
-    public static function boolCheck(string $className) : array { 
+    public static function boolCheck(string $className) : array {
         # Find the model;
         preg_match_all('/Proto\\\([A-z]+)Service\\\/i', $className, $matches);
         $class = 'App\\Models\\'.$matches[1][0];
-        
+
         try{
             $instance = new $class();
             $booleanArray = [];
 
             if(!$instance->casts){
-                throw new Exception('Casting missing or protected for model : '.$class); 
+                throw new Exception('Casting missing or protected for model : '.$class);
             }
 
             foreach($instance->casts as $key => $cast){
@@ -66,4 +69,5 @@ abstract class GrpcValidator {
         return [];
     }
 }
+
 
