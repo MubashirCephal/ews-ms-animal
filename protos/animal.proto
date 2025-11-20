@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+option php_namespace = "Proto\\AnimalService";
+option php_metadata_namespace = "Proto\\Metadata";
+
+package AnimalServicePackage;
+
+service AnimalService { 
+  rpc GetAnimals (GetAnimalsRequest) returns (GetAnimalsResponse);
+  rpc GetAnimal (GetAnimalRequest) returns (GetAnimalResponse);
+  rpc CreateAnimal (CreateAnimalRequest) returns (CreateAnimalResponse);
+  rpc UpdateAnimal (UpdateAnimalRequest) returns (UpdateAnimalResponse);
+  rpc DeleteAnimal (DeleteAnimalRequest) returns (DeleteAnimalResponse);
+}
+// Requests
+message GetAnimalsRequest {
+   repeated Filter filter= 1;
+}
+message GetAnimalRequest {
+   int32 id = 1;
+}
+message CreateAnimalRequest {
+   TemplateAnimal animal = 1;
+}
+message UpdateAnimalRequest {
+   TemplateAnimal animal = 2;
+}
+message DeleteAnimalRequest {
+    int32 id = 1;
+}
+// Responses
+message GetAnimalsResponse {
+   repeated TemplateAnimal animals = 1;
+   int32 response_code = 2;
+}
+message GetAnimalResponse {
+    TemplateAnimal animal = 1;
+    int32 response_code = 2;
+}       
+message CreateAnimalResponse {
+   TemplateAnimal animal = 1;
+   int32 response_code = 2;
+}
+message UpdateAnimalResponse {
+   TemplateAnimal animal = 1;
+   int32 response_code = 2;
+}
+message DeleteAnimalResponse {
+   bool success = 1;
+   int32 response_code = 2;
+}
+// Animal message
+message TemplateAnimal {
+   optional int32 id = 1;
+   optional bool is_consignment_approved = 2;        
+   optional int32 species_id = 3;
+   int32 breed_id = 4;
+   optional int32 age = 5;
+   optional string description = 6;
+   string status = 7;
+   int32 country_id = 8;
+   int32 facility_id = 9;
+   string registration_type = 10;
+   int32 owner_id = 11;
+   string identification = 12;
+   optional int32 number_of_males = 13;
+   optional int32 number_of_females = 14;
+   optional int32 total_number = 15;
+   bool is_exotic = 16;
+   optional int32 weqaa_record_id = 17;
+   optional string sex = 18;
+   optional string remarks = 19;
+   optional int32 province_id = 20;
+   optional string area = 21;
+   optional string nickname   = 22;
+   optional string scientific_name  = 23;
+   optional string rfid = 24;
+   optional string branding = 25;
+   optional string ear_tag    = 26;
+   optional string microchip = 27;
+   optional string pedigree = 28;
+   optional string unit = 29;
+   optional int32 unit_value = 30;
+   optional int32 service_id = 31;
+}
+message Filter {
+   string key = 1;
+   string value = 2;
+}
