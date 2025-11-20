@@ -4,24 +4,19 @@ namespace App\GrpcServices;
 
 use App\Models\{{model}};
 use App\Services\{{model}}Service;
-use App\Validators\{{model}}\GrpcCreate{{model}}RequestValidation;
-use App\Validators\{{model}}\GrpcGet{{model}}RequestValidator;
-use App\Validators\{{model}}\GrpcUpdate{{model}}RequestValidation;
-use App\Validators\{{model}}\GrpcDelete{{model}}RequestValidation;
-use App\Validators\{{model}}\GrpcDelete{{model}}RequestValidator;
-use Exception;
+use Proto\{{model}}Service\{{model}}ServiceStub;
+
 use Grpc\ServerContext;
-use Proto\{{model}}\Create{{model}}Request;
-use Proto\{{model}}\Create{{model}}Response;
-use Proto\{{model}}\Delete{{model}}Request;
-use Proto\{{model}}\Delete{{model}}Response;
-use Proto\{{model}}\Get{{model}}Request;
-use Proto\{{model}}\Get{{model}}Response;
-use Proto\{{model}}\Get{{modelPlural}}Request;
-use Proto\{{model}}\Get{{modelPlural}}Response;
-use Proto\{{model}}\{{model}}ServiceStub;
-use Proto\{{model}}\Update{{model}}Request;
-use Proto\{{model}}\Update{{model}}Response;
+use Proto\{{model}}Service\Create{{model}}Request;
+use Proto\{{model}}Service\Create{{model}}Response;
+use Proto\{{model}}Service\Delete{{model}}Request;
+use Proto\{{model}}Service\Delete{{model}}Response;
+use Proto\{{model}}Service\Get{{model}}Request;
+use Proto\{{model}}Service\Get{{model}}Response;
+use Proto\{{model}}Service\Get{{modelPlural}}Request;
+use Proto\{{model}}Service\Get{{modelPlural}}Response;
+use Proto\{{model}}Service\Update{{model}}Request;
+use Proto\{{model}}Service\Update{{model}}Response;
 
 class Grpc{{model}}Service extends {{model}}ServiceStub
 {

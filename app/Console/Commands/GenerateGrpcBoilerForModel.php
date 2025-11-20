@@ -12,6 +12,7 @@ class GenerateGrpcBoilerForModel extends Command
     public $model;
     public $modelPlural;
     public $modelVar;
+    public $modelVarPlural;
 
     /**
      * The name and signature of the console command.
@@ -34,12 +35,14 @@ class GenerateGrpcBoilerForModel extends Command
     {
         $this->model = ucfirst($this->ask('Enter the name of the model'));
         $this->modelPlural = str()->plural($this->model);
+        $this->modelVarPlural = lcfirst(str()->plural($this->model));
 
         if($this->modelPlural == $this->model){
             $this->modelPlural = $this->model.'ById';
         }
-
+        $this->info('=================================');
         $this->info('Generating Stubs, Please wait.');
+        $this->info('=================================');
 
         # Create all the boilerfiles;
 
@@ -50,27 +53,35 @@ class GenerateGrpcBoilerForModel extends Command
         }else{
             Artisan::call('make:interface '.$this->model.'ServiceInterface');
         }
+        Artisan::call('make:resource '.$this->model.'Resource');
         Artisan::call('make:class GrpcServices/Grpc'.$this->model.'Service');
         Artisan::call('make:class Services/'.$this->model.'Service');
-        Artisan::call('make:class Validators/'.$this->model.'/CreateServiceValidation');
-        Artisan::call('make:class Validators/'.$this->model.'/DeleteServiceValidation');
-        Artisan::call('make:class Validators/'.$this->model.'/UpdateServiceValidation');
-        Artisan::call('make:class Validators/'.$this->model.'/GetServiceValidation');
+        Artisan::call('make:class Validators/'.$this->model.'/CreateRequestValidation');
+        Artisan::call('make:class Validators/'.$this->model.'/DeleteRequestValidation');
+        Artisan::call('make:class Validators/'.$this->model.'/UpdateRequestValidation');
+        Artisan::call('make:class Validators/'.$this->model.'/GetRequestValidation');
 
 
         $this->process('grpc.service.stub', 'GrpcServices/Grpc'.$this->model.'Service');
+        $this->process('resource.stub', 'Http/Resources/'.$this->model.'Resource');
         $this->process('interface.stub', 'Interfaces/'.$this->model.'ServiceInterface');
         $this->process('service.stub', 'Services/'.$this->model.'Service');
-        $this->process('create.validator.stub', 'Validators/'.$this->model.'/CreateServiceValidation');
-        $this->process('delete.validator.stub', 'Validators/'.$this->model.'/DeleteServiceValidation');
-        $this->process('update.validator.stub', 'Validators/'.$this->model.'/UpdateServiceValidation');
-        $this->process('get.validator.stub', 'Validators/'.$this->model.'/GetServiceValidation');
+        $this->process('create.validator.stub', 'Validators/'.$this->model.'/CreateRequestValidation');
+        $this->process('delete.validator.stub', 'Validators/'.$this->model.'/DeleteRequestValidation');
+        $this->process('update.validator.stub', 'Validators/'.$this->model.'/UpdateRequestValidation');
+        $this->process('get.validator.stub', 'Validators/'.$this->model.'/GetRequestValidation');
 
 
-
+        $this->info('=================================');
         $this->info('All Files Generated Successfully');
+        $this->info('=================================');
+
+        $this->info('=================================');
+        $this->info('=================================');
         $this->info('Please add the line to RunRpc.php');
         $this->info('$server->handle(new Grpc'.$this->model.'Service());');
+        $this->info('=================================');
+        $this->info('=================================');
     }
 
 
@@ -89,9 +100,15 @@ class GenerateGrpcBoilerForModel extends Command
             $content = preg_replace('/\{\{model\}\}/i', $this->model, $content);
             $content = preg_replace('/\{\{modelPlural\}\}/i', $this->modelPlural, $content);
             $content = preg_replace('/\{\{modelVar\}\}/i', str()->lower($this->model), $content);
+            $content = preg_replace('/\{\{modelVarPlural\}\}/i', $this->modelVarPlural, $content);
 
             file_put_contents(app_path($file.'.php'), $content);
+
+            $this->info('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
             $this->info('File Generated : '.$file.'.php');
+            $this->info('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+
         }
     }
 }
+

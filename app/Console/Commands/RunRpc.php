@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\GrpcServices\GrpcAnimalService;
-use App\Services\BoilerPlatePingService;
 use Illuminate\Console\Command;
 
 class RunRpc extends Command
@@ -33,8 +31,6 @@ class RunRpc extends Command
         $server->addHttp2Port(env('GRPC_RUN_HOST').':'.env('GRPC_RUN_PORT'));
 
         // Note : Add your grpc services here;
-        # Sample Ping Grpc Service
-        $server->handle(new BoilerPlatePingService());
 
         echo "Listening on port :".env('GRPC_RUN_PORT'). PHP_EOL;
         $server->run();

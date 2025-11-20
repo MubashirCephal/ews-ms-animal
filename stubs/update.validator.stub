@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validators\Province;
+namespace App\Validators\{{model}};
 
 use App\Classes\GrpcValidator;
 

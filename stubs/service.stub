@@ -11,34 +11,34 @@ use App\Validators\{{model}}\GetRequestValidation;
 use App\Validators\{{model}}\UpdateRequestValidation;
 
 use Grpc\ServerContext;
-use Proto\{{model}}\Template{{model}};
+use Proto\{{model}}Service\Template{{model}};
 
-use Proto\{{model}}\Get{{model}}Request;
-use Proto\{{model}}\Create{{model}}Request;
-use Proto\{{model}}\Create{{model}}Response;
-use Proto\{{model}}\Delete{{model}}Request;
-use Proto\{{model}}\Delete{{model}}Response;
-use Proto\{{model}}\Get{{model}}Response;
-use Proto\{{model}}\Get{{modelPlural}}Request;
-use Proto\{{model}}\Get{{modelPlural}}Response;
-use Proto\{{model}}\Update{{model}}Request;
-use Proto\{{model}}\Update{{model}}Response;
+use Proto\{{model}}Service\Get{{model}}Request;
+use Proto\{{model}}Service\Create{{model}}Request;
+use Proto\{{model}}Service\Create{{model}}Response;
+use Proto\{{model}}Service\Delete{{model}}Request;
+use Proto\{{model}}Service\Delete{{model}}Response;
+use Proto\{{model}}Service\Get{{model}}Response;
+use Proto\{{model}}Service\Get{{modelPlural}}Request;
+use Proto\{{model}}Service\Get{{modelPlural}}Response;
+use Proto\{{model}}Service\Update{{model}}Request;
+use Proto\{{model}}Service\Update{{model}}Response;
 
 class {{model}}Service implements {{model}}ServiceInterface {
 
     public function Get{{model}}(Get{{model}}Request $request, ServerContext $context): ?Get{{model}}Response {
         $validated = GetRequestValidation::validate($request);
         ${{modelVar}} = {{model}}::findOrFail($validated['id']);
-        return new Get{{model}}Response(${{modelVar}}->toResource()->dto());
+        return new Get{{model}}Response(${{modelVar}}->toResource()->dto(200));
 
         throw new \Exception('Not implemented');
     }
 
     public function Get{{modelPlural}}(Get{{modelPlural}}Request $request, ServerContext $context): ?Get{{modelPlural}}Response {
-        ${{modelVar}}s = {{model}}::all();
+        ${{modelVarPlural}} = {{model}}::all();
         
         return new Get{{modelPlural}}Response([
-            '{{model}}s' => $this->repeated(${{modelVar}}s),
+            '{{modelVarPlural}}' => $this->repeated(${{modelVarPlural}}),
             'response_code' => 200
         ]);
         
@@ -48,7 +48,7 @@ class {{model}}Service implements {{model}}ServiceInterface {
     public function Create{{model}}(Create{{model}}Request $request, ServerContext $context): ?Create{{model}}Response {
         $validated = CreateRequestValidation::validate($request->get{{model}}());
         ${{modelVar}} = {{model}}::create($validated);
-        return new Create{{model}}Response(${{modelVar}}->toResource()->dto());
+        return new Create{{model}}Response(${{modelVar}}->toResource()->dto(201));
 
         throw new \Exception('Not implemented');
     }
@@ -58,7 +58,7 @@ class {{model}}Service implements {{model}}ServiceInterface {
         ${{modelVar}} = {{model}}::findOrFail($validated['id']);
         ${{modelVar}}->update($validated);
 
-        return new Update{{model}}Response(${{modelVar}}->toResource()->dto());
+        return new Update{{model}}Response(${{modelVar}}->toResource()->dto(201));
         throw new \Exception('Not implemented');
     }
 
@@ -79,7 +79,7 @@ class {{model}}Service implements {{model}}ServiceInterface {
         $repeated = [];
 
         foreach ($items as $item){
-            $repeated = [...$repeated, new Template{{model}}($item->except('created_at', 'updated_at'))];
+            $repeated = [...$repeated, $item->toResource()->dto()['{{model}}']];
         }
 
         return $repeated;
