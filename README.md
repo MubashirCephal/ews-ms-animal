@@ -26,9 +26,16 @@
     DELETED => Delete
 ```
 
-### GRPC Requests with claims
+### gRPC Requests with claims
 - Every gRPC request sent should have the `Authorization` Metadata [Bearer Token]
 - Every gRPC request sent to the service should also have a `X-Service-Key` Metadata attached to it [The receiver's ServiceID for logging]
 - Middleware is replaced by an Interceptor class that would be doing an integrity check before serving any requests, for now it requires you to specify the Action Enum
 - To run the service gRPC server type in `php artisan grpc:run` but make sure that you have set both `GRPC_RUN_HOST` and `GRPC_RUN_PORT` in your service .env
 - 
+
+### gRPC scaffolding generation
+- Make sure that you setup the models properly
+- Type in `php artisan grpc:boiler`, it'll ask for the model name
+- Entering the model name and pressing enter would start generating the scaffolding for the service
+- You can follow the scaffolding interface to create the proto file rpc services and message bodies
+- Make sure that you add `public $casts` to support boolean checks done by the `GrpcValidtor` class
