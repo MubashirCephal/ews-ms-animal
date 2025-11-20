@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Validators\Province;
+
+use App\Classes\GrpcValidator;
+
+class UpdateRequestValidation extends GrpcValidator {
+
+    static function rules(): array {
+        return [
+           // rules
+        ];
+    }
+    
+}

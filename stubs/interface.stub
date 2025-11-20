@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Interfaces;
+
+interface {{model}}ServiceInterface
+{
+     /**
+     * @param \Proto\{{model}}Service\Get{{modelPlural}}Request $request client request
+     * @param \Grpc\ServerContext $context server request context
+     * @return \Proto\{{model}}Service\Get{{modelPlural}}Response for response data, null if if error occurred
+     *     initial metadata (if any) and status (if not ok) should be set to $context
+     */
+    public function Get{{modelPlural}}(
+        \Proto\{{model}}Service\Get{{modelPlural}}Request $request,
+        \Grpc\ServerContext $context
+    ): ?\Proto\{{model}}Service\Get{{modelPlural}}Response;
+
+    /**
+     * @param \Proto\{{model}}Service\Get{{model}}Request $request client request
+     * @param \Grpc\ServerContext $context server request context
+     * @return \Proto\{{model}}Service\Get{{model}}Response for response data, null if if error occurred
+     *     initial metadata (if any) and status (if not ok) should be set to $context
+     */
+    public function Get{{model}}(
+        \Proto\{{model}}Service\Get{{model}}Request $request,
+        \Grpc\ServerContext $context
+    ): ?\Proto\{{model}}Service\Get{{model}}Response;
+
+    /**
+     * @param \Proto\{{model}}Service\Create{{model}}Request $request client request
+     * @param \Grpc\ServerContext $context server request context
+     * @return \Proto\{{model}}Service\Create{{model}}Response for response data, null if if error occurred
+     *     initial metadata (if any) and status (if not ok) should be set to $context
+     */
+    public function Create{{model}}(
+        \Proto\{{model}}Service\Create{{model}}Request $request,
+        \Grpc\ServerContext $context
+    ): ?\Proto\{{model}}Service\Create{{model}}Response;
+
+    /**
+     * @param \Proto\{{model}}Service\Update{{model}}Request $request client request
+     * @param \Grpc\ServerContext $context server request context
+     * @return \Proto\{{model}}Service\Update{{model}}Response for response data, null if if error occurred
+     *     initial metadata (if any) and status (if not ok) should be set to $context
+     */
+    public function Update{{model}}(
+        \Proto\{{model}}Service\Update{{model}}Request $request,
+        \Grpc\ServerContext $context
+    ): ?\Proto\{{model}}Service\Update{{model}}Response;
+
+    /**
+     * @param \Proto\{{model}}Service\Delete{{model}}Request $request client request
+     * @param \Grpc\ServerContext $context server request context
+     * @return \Proto\{{model}}Service\Delete{{model}}Response for response data, null if if error occurred
+     *     initial metadata (if any) and status (if not ok) should be set to $context
+     */
+    public function Delete{{model}}(
+        \Proto\{{model}}Service\Delete{{model}}Request $request,
+        \Grpc\ServerContext $context
+    ): ?\Proto\{{model}}Service\Delete{{model}}Response;
+
+}

@@ -1,0 +1,58 @@
+<?php
+
+namespace App\GrpcServices;
+
+use App\Models\{{model}};
+use App\Services\{{model}}Service;
+use App\Validators\{{model}}\GrpcCreate{{model}}RequestValidation;
+use App\Validators\{{model}}\GrpcGet{{model}}RequestValidator;
+use App\Validators\{{model}}\GrpcUpdate{{model}}RequestValidation;
+use App\Validators\{{model}}\GrpcDelete{{model}}RequestValidation;
+use App\Validators\{{model}}\GrpcDelete{{model}}RequestValidator;
+use Exception;
+use Grpc\ServerContext;
+use Proto\{{model}}\Create{{model}}Request;
+use Proto\{{model}}\Create{{model}}Response;
+use Proto\{{model}}\Delete{{model}}Request;
+use Proto\{{model}}\Delete{{model}}Response;
+use Proto\{{model}}\Get{{model}}Request;
+use Proto\{{model}}\Get{{model}}Response;
+use Proto\{{model}}\Get{{modelPlural}}Request;
+use Proto\{{model}}\Get{{modelPlural}}Response;
+use Proto\{{model}}\{{model}}ServiceStub;
+use Proto\{{model}}\Update{{model}}Request;
+use Proto\{{model}}\Update{{model}}Response;
+
+class Grpc{{model}}Service extends {{model}}ServiceStub
+{
+    public ${{model}}Service;
+    /**
+     * Create a new class instance.
+     */
+    public function __construct(){
+        $this->{{model}}Service = new {{model}}Service();
+    }
+
+    public function Get{{model}}(Get{{model}}Request $request, ServerContext $context): ?Get{{model}}Response {
+        return $this->{{model}}Service->Get{{model}}($request, $context);
+    }
+
+    public function Get{{modelPlural}}(Get{{modelPlural}}Request $request, ServerContext $context): ?Get{{modelPlural}}Response {
+        return $this->{{model}}Service->Get{{modelPlural}}($request, $context);
+    }
+
+    public function Create{{model}}(Create{{model}}Request $request, ServerContext $context): ?Create{{model}}Response {
+        return $this->{{model}}Service->Create{{model}}($request, $context);
+    }
+
+    public function Update{{model}}(Update{{model}}Request $request, ServerContext $context): ?Update{{model}}Response {
+        return $this->{{model}}Service->Update{{model}}($request, $context);
+    }
+
+    public function Delete{{model}}(Delete{{model}}Request $request, ServerContext $context): ?Delete{{model}}Response {
+        return $this->{{model}}Service->Delete{{model}}($request, $context);
+    }
+
+    
+
+}

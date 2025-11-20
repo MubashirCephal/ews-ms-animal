@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\GrpcServices\GrpcAnimalService;
 use App\Services\BoilerPlatePingService;
 use Illuminate\Console\Command;
 
