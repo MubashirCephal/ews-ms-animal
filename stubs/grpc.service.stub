@@ -1,0 +1,53 @@
+<?php
+
+namespace App\GrpcServices;
+
+use App\Models\{{model}};
+use App\Services\{{model}}Service;
+use Proto\{{model}}Service\{{model}}ServiceStub;
+
+use Grpc\ServerContext;
+use Proto\{{model}}Service\Create{{model}}Request;
+use Proto\{{model}}Service\Create{{model}}Response;
+use Proto\{{model}}Service\Delete{{model}}Request;
+use Proto\{{model}}Service\Delete{{model}}Response;
+use Proto\{{model}}Service\Get{{model}}Request;
+use Proto\{{model}}Service\Get{{model}}Response;
+use Proto\{{model}}Service\Get{{modelPlural}}Request;
+use Proto\{{model}}Service\Get{{modelPlural}}Response;
+use Proto\{{model}}Service\Update{{model}}Request;
+use Proto\{{model}}Service\Update{{model}}Response;
+
+class Grpc{{model}}Service extends {{model}}ServiceStub
+{
+    public ${{model}}Service;
+    /**
+     * Create a new class instance.
+     */
+    public function __construct(){
+        $this->{{model}}Service = new {{model}}Service();
+    }
+
+    public function Get{{model}}(Get{{model}}Request $request, ServerContext $context): ?Get{{model}}Response {
+        return $this->{{model}}Service->Get{{model}}($request, $context);
+    }
+
+    public function Get{{modelPlural}}(Get{{modelPlural}}Request $request, ServerContext $context): ?Get{{modelPlural}}Response {
+        return $this->{{model}}Service->Get{{modelPlural}}($request, $context);
+    }
+
+    public function Create{{model}}(Create{{model}}Request $request, ServerContext $context): ?Create{{model}}Response {
+        return $this->{{model}}Service->Create{{model}}($request, $context);
+    }
+
+    public function Update{{model}}(Update{{model}}Request $request, ServerContext $context): ?Update{{model}}Response {
+        return $this->{{model}}Service->Update{{model}}($request, $context);
+    }
+
+    public function Delete{{model}}(Delete{{model}}Request $request, ServerContext $context): ?Delete{{model}}Response {
+        return $this->{{model}}Service->Delete{{model}}($request, $context);
+    }
+
+    
+
+}

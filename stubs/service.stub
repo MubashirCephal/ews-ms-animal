@@ -1,0 +1,88 @@
+<?php
+
+namespace App\Services;
+
+    
+use App\Models\{{model}};
+use App\Interfaces\{{model}}ServiceInterface;
+use App\Validators\{{model}}\CreateRequestValidation;
+use App\Validators\{{model}}\DeleteRequestValidation;
+use App\Validators\{{model}}\GetRequestValidation;
+use App\Validators\{{model}}\UpdateRequestValidation;
+
+use Grpc\ServerContext;
+use Proto\{{model}}Service\Template{{model}};
+
+use Proto\{{model}}Service\Get{{model}}Request;
+use Proto\{{model}}Service\Create{{model}}Request;
+use Proto\{{model}}Service\Create{{model}}Response;
+use Proto\{{model}}Service\Delete{{model}}Request;
+use Proto\{{model}}Service\Delete{{model}}Response;
+use Proto\{{model}}Service\Get{{model}}Response;
+use Proto\{{model}}Service\Get{{modelPlural}}Request;
+use Proto\{{model}}Service\Get{{modelPlural}}Response;
+use Proto\{{model}}Service\Update{{model}}Request;
+use Proto\{{model}}Service\Update{{model}}Response;
+
+class {{model}}Service implements {{model}}ServiceInterface {
+
+    public function Get{{model}}(Get{{model}}Request $request, ServerContext $context): ?Get{{model}}Response {
+        $validated = GetRequestValidation::validate($request);
+        ${{modelVar}} = {{model}}::findOrFail($validated['id']);
+        return new Get{{model}}Response(${{modelVar}}->toResource()->dto(200));
+
+        throw new \Exception('Not implemented');
+    }
+
+    public function Get{{modelPlural}}(Get{{modelPlural}}Request $request, ServerContext $context): ?Get{{modelPlural}}Response {
+        ${{modelVarPlural}} = {{model}}::all();
+        
+        return new Get{{modelPlural}}Response([
+            '{{modelVarPlural}}' => $this->repeated(${{modelVarPlural}}),
+            'response_code' => 200
+        ]);
+        
+        throw new \Exception('Not implemented');
+    }
+
+    public function Create{{model}}(Create{{model}}Request $request, ServerContext $context): ?Create{{model}}Response {
+        $validated = CreateRequestValidation::validate($request->get{{model}}());
+        ${{modelVar}} = {{model}}::create($validated);
+        return new Create{{model}}Response(${{modelVar}}->toResource()->dto(201));
+
+        throw new \Exception('Not implemented');
+    }
+
+    public function Update{{model}}(Update{{model}}Request $request, ServerContext $context): ?Update{{model}}Response {
+        $validated = UpdateRequestValidation::validate($request->get{{model}}());
+        ${{modelVar}} = {{model}}::findOrFail($validated['id']);
+        ${{modelVar}}->update($validated);
+
+        return new Update{{model}}Response(${{modelVar}}->toResource()->dto(201));
+        throw new \Exception('Not implemented');
+    }
+
+    public function Delete{{model}}(Delete{{model}}Request $request, ServerContext $context): ?Delete{{model}}Response {
+        $validated = DeleteRequestValidation::validate($request);
+        ${{modelVar}} = {{model}}::findOrFail($validated['id']);
+        ${{modelVar}}->delete();
+
+        return new Delete{{model}}Response([
+            'message' => '{{model}} Deleted Successfully',
+            'response_code' => 200
+        ]);
+
+        throw new \Exception('Not implemented');
+    }
+
+    protected function repeated($items) : array {
+        $repeated = [];
+
+        foreach ($items as $item){
+            $repeated = [...$repeated, $item->toResource()->dto()['{{modelVar}}']];
+        }
+
+        return $repeated;
+    }
+
+}
