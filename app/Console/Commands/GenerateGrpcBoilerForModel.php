@@ -12,7 +12,9 @@ class GenerateGrpcBoilerForModel extends Command
     public $model;
     public $modelPlural;
     public $modelVar;
+    public $modelVarSnake;
     public $modelVarPlural;
+    public $modelVarPluralSnake;
 
     /**
      * The name and signature of the console command.
@@ -34,12 +36,20 @@ class GenerateGrpcBoilerForModel extends Command
     public function handle()
     {
         $this->model = ucfirst($this->ask('Enter the name of the model'));
+        $this->modelVar = str()->lower($this->model);
+        $this->modelVarSnake = str()->snake($this->model);
+        
         $this->modelPlural = str()->plural($this->model);
-        $this->modelVarPlural = lcfirst(str()->plural($this->model));
+
 
         if($this->modelPlural == $this->model){
             $this->modelPlural = $this->model.'ById';
         }
+
+        $this->modelVarPlural = lcfirst($this->modelPlural);
+        $this->modelVarPluralSnake = str()->snake($this->modelVarPlural);
+
+        
         $this->info('=================================');
         $this->info('Generating Stubs, Please wait.');
         $this->info('=================================');
@@ -99,8 +109,10 @@ class GenerateGrpcBoilerForModel extends Command
             // Process the Content;
             $content = preg_replace('/\{\{model\}\}/i', $this->model, $content);
             $content = preg_replace('/\{\{modelPlural\}\}/i', $this->modelPlural, $content);
-            $content = preg_replace('/\{\{modelVar\}\}/i', str()->lower($this->model), $content);
+            $content = preg_replace('/\{\{modelVar\}\}/i', $this->modelVar, $content);
             $content = preg_replace('/\{\{modelVarPlural\}\}/i', $this->modelVarPlural, $content);
+            $content = preg_replace('/\{\{modelVarPluralSnake\}\}/i', $this->modelVarPluralSnake, $content);
+            $content = preg_replace('/\{\{modelVarSnake\}\}/i', $this->modelVarSnake, $content);
 
             file_put_contents(app_path($file.'.php'), $content);
 

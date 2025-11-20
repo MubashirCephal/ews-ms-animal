@@ -29,7 +29,7 @@ class {{model}}Service implements {{model}}ServiceInterface {
     public function Get{{model}}(Get{{model}}Request $request, ServerContext $context): ?Get{{model}}Response {
         $validated = GetRequestValidation::validate($request);
         ${{modelVar}} = {{model}}::findOrFail($validated['id']);
-        return new Get{{model}}Response(${{modelVar}}->toResource()->dto(200));
+        return new Get{{model}}Response(${{modelVar}}->toResource()->dto());
 
         throw new \Exception('Not implemented');
     }
@@ -79,7 +79,7 @@ class {{model}}Service implements {{model}}ServiceInterface {
         $repeated = [];
 
         foreach ($items as $item){
-            $repeated = [...$repeated, $item->toResource()->dto()['{{modelVar}}']];
+            $repeated = [...$repeated, $item->toResource()->dto()['{{modelVarSnake}}']];
         }
 
         return $repeated;

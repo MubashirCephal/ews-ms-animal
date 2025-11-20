@@ -20,7 +20,7 @@ class {{model}}Resource extends JsonResource
 
     public function dto(?int $responseCode = 200) : array {
         return [
-            '{{modelVar}}' => new Template{{model}}($this->except('created_at', 'updated_at')),
+            '{{modelVarSnake}}' => new Template{{model}}($this->except('created_at', 'updated_at')),
             'response_code' => $responseCode
         ];
     }
