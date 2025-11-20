@@ -51,9 +51,17 @@ abstract class GrpcValidator {
             $instance = new $class();
             $booleanArray = [];
 
+
+
+            if($instance->casts === []){
+                return $booleanArray;
+            }
+
             if(!$instance->casts){
                 throw new Exception('Casting missing or protected for model : '.$class);
             }
+
+
 
             foreach($instance->casts as $key => $cast){
                 if($cast == 'boolean'){
