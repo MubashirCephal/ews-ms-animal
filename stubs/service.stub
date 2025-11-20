@@ -38,7 +38,7 @@ class {{model}}Service implements {{model}}ServiceInterface {
         ${{modelVarPlural}} = {{model}}::all();
         
         return new Get{{modelPlural}}Response([
-            '{{modelVarPlural}}' => $this->repeated(${{modelVarPlural}}),
+            '{{modelVarPluralSnake}}' => $this->repeated(${{modelVarPlural}}),
             'response_code' => 200
         ]);
         

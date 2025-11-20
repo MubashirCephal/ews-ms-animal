@@ -36,7 +36,7 @@ class GenerateGrpcBoilerForModel extends Command
     public function handle()
     {
         $this->model = ucfirst($this->ask('Enter the name of the model'));
-        $this->modelVar = str()->lower($this->model);
+        $this->modelVar = str()->lcfirst($this->model);
         $this->modelVarSnake = str()->snake($this->model);
         
         $this->modelPlural = str()->plural($this->model);
