@@ -59,7 +59,7 @@ message TemplateBreed {
    bool can_create_batch = 6;
    bool status = 7;
    
-   TemplateSpecies species = 8;
+   optional TemplateSpecies species = 8;
 }
 message Filter {
    string key = 1;

@@ -18,7 +18,7 @@ class Breed extends Model
     {
         return $this->belongsTo(Species::class);
     }
-    protected $casts = [
+    public $casts = [
         'lifespan' => 'integer',
         'status' => 'boolean',
     ];

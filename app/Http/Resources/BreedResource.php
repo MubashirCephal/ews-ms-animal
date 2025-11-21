@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Proto\BreedService\TemplateBreed;
+use Proto\BreedService\TemplateSpecies;
 
 class BreedResource extends JsonResource
 {
@@ -19,8 +20,10 @@ class BreedResource extends JsonResource
     }
     public function dto()
     {
+        $data = $this->except('created_at', 'updated_at');
+        $data['species'] = new TemplateSpecies($this->species->except('created_at', 'updated_at'));
         return [
-            'breed' => new TemplateBreed($this->except('created_at', 'updated_at')),
+            'breed' => new TemplateBreed($data),
             'response_code' => 200,
         ];
     }

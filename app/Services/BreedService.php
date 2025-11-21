@@ -30,7 +30,7 @@ class BreedService implements BreedServiceInterface
     public function GetBreeds(GetBreedsRequest $request, ServerContext $context): ?GetBreedsResponse
     {
         if (VerificationMiddleware::handle($context, MethodMap::READ)) {
-            $breeds = $this->repeated(Breed::all());
+            $breeds = $this->repeated(Breed::with(['species'])->get());
             return new GetBreedsResponse([
                 'breeds' => $breeds,
                 'response_code' => 200,
@@ -42,19 +42,19 @@ class BreedService implements BreedServiceInterface
     {
         if (VerificationMiddleware::handle($context, MethodMap::READ)) {
             $validated = GetRequestValidation::validate($request);
-            $breed = Breed::findOrFail($validated['id']);
+            $breed = Breed::with('species')->findOrFail($validated['id']);;
             return new GetBreedResponse($breed->toResource()->dto());
         }
         abort(401, GrpcException::UNAUTHORIZED);
     }
     public function CreateBreed(CreateBreedRequest $request, ServerContext $context): ?CreateBreedResponse
     {
-        if (VerificationMiddleware::handle($context, MethodMap::CREATE)) {
+        // if (VerificationMiddleware::handle($context, MethodMap::CREATE)) {
             $validated = CreateRequestValidation::validate($request->getBreed());
             $validated['status'] = $validated['status'] ?? false;
             $breed = Breed::create($validated);
             return new CreateBreedResponse($breed->toResource()->dto());
-        }
+        // }
         abort(401, GrpcException::UNAUTHORIZED);
     }
     public function UpdateBreed(UpdateBreedRequest $request, ServerContext $context): ?UpdateBreedResponse

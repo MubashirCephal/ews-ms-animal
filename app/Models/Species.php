@@ -12,7 +12,7 @@ class Species extends Model
         'description',
         'status',
     ];
-    protected $casts = [
+    public $casts = [
         'status' => 'boolean',
     ];
 }

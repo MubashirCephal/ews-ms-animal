@@ -44,7 +44,7 @@ class TemplateBreed extends \Google\Protobuf\Internal\Message
      */
     protected $status = false;
     /**
-     * Generated from protobuf field <code>.BreedServicePackage.TemplateSpecies species = 8;</code>
+     * Generated from protobuf field <code>optional .BreedServicePackage.TemplateSpecies species = 8;</code>
      */
     protected $species = null;
 
@@ -254,7 +254,7 @@ class TemplateBreed extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.BreedServicePackage.TemplateSpecies species = 8;</code>
+     * Generated from protobuf field <code>optional .BreedServicePackage.TemplateSpecies species = 8;</code>
      * @return \Proto\BreedService\TemplateSpecies|null
      */
     public function getSpecies()
@@ -273,7 +273,7 @@ class TemplateBreed extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.BreedServicePackage.TemplateSpecies species = 8;</code>
+     * Generated from protobuf field <code>optional .BreedServicePackage.TemplateSpecies species = 8;</code>
      * @param \Proto\BreedService\TemplateSpecies $var
      * @return $this
      */

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\GrpcServices\GrpcAnimalFacilityService;
 use App\GrpcServices\GrpcAnimalService;
 use App\GrpcServices\GrpcBreedService;
 use App\GrpcServices\GrpcSpeciesService;
@@ -40,6 +41,7 @@ class RunRpc extends Command
         $server->handle(new GrpcSpeciesService());
         $server->handle(new GrpcBreedService());
         $server->handle(new GrpcAnimalService());
+        $server->handle(new GrpcAnimalFacilityService());
 
         echo "Listening on port :".env('GRPC_RUN_PORT'). PHP_EOL;
         $server->run();
