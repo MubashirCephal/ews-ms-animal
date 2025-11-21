@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+option php_namespace = "Proto\\SpeciesService";
+option php_metadata_namespace = "Proto\\Metadata";
+
+package SpeciesServicePackage;
+
+service SpeciesService { 
+  rpc GetSpecies (GetSpeciesRequest) returns (GetSpeciesResponse);
+  rpc GetSpeciesById (GetSpeciesByIdRequest) returns (GetSpeciesByIdResponse);
+  rpc CreateSpecies (CreateSpeciesRequest) returns (CreateSpeciesResponse);
+  rpc UpdateSpecies (UpdateSpeciesRequest) returns (UpdateSpeciesResponse);
+  rpc DeleteSpecies (DeleteSpeciesRequest) returns (DeleteSpeciesResponse);
+}
+// Requests
+message GetSpeciesRequest {
+   repeated Filter filter = 1;
+}
+message GetSpeciesByIdRequest {
+   int32 id = 1;
+}
+message CreateSpeciesRequest {
+   TemplateSpecies species = 1;
+}
+message UpdateSpeciesRequest {
+   TemplateSpecies species = 1;
+}
+message DeleteSpeciesRequest {
+   int32 id = 1;
+}
+// Responses
+message GetSpeciesResponse {
+   repeated TemplateSpecies species = 1;
+   int32 response_code = 2;
+
+}
+message GetSpeciesByIdResponse {
+   TemplateSpecies species = 1;
+   int32 response_code = 2;
+}       
+message CreateSpeciesResponse {
+   TemplateSpecies species = 1;
+   int32 response_code = 2;
+}
+message UpdateSpeciesResponse {
+   TemplateSpecies species = 1;
+   int32 response_code = 2;
+}
+message DeleteSpeciesResponse {
+   bool success = 1;
+   int32 response_code = 2;
+}
+// Species message
+message TemplateSpecies {
+   optional int32 id = 1;
+   string name = 2;
+   optional string scientific_name = 3;
+   optional string description = 4;
+   bool status = 5;
+}
+message Filter {
+   string key = 1;
+   string value = 2;
+}

@@ -1,0 +1,53 @@
+syntax ="proto3";
+
+option php_namespace = "Proto\\AnimalVaccinationService";
+option php_metadata_namespace = "Proto\\Metadata";
+
+package AnimalVaccinationServicePackage;
+service AnimalVaccinationService {
+  rpc GetAnimalVaccinations (GetAnimalVaccinationsRequest) returns (GetAnimalVaccinationsResponse);
+  rpc CreateAnimalVaccination (CreateAnimalVaccinationRequest) returns (CreateAnimalVaccinationResponse);
+  rpc UpdateAnimalVaccination (UpdateAnimalVaccinationRequest) returns (UpdateAnimalVaccinationResponse);
+  rpc DeleteAnimalVaccination (DeleteAnimalVaccinationRequest) returns (DeleteAnimalVaccinationResponse);
+}
+// Requests
+message GetAnimalVaccinationsRequest {
+   int32 animal_id= 1;
+}
+message CreateAnimalVaccinationRequest {
+   AnimalVaccination animal_vaccination = 1;
+}
+message UpdateAnimalVaccinationRequest {
+   int32 id = 1;
+   AnimalVaccination animal_vaccination = 2;
+}
+message DeleteAnimalVaccinationRequest {
+    int32 id = 1;
+}
+// Responses
+message GetAnimalVaccinationsResponse {
+   repeated AnimalVaccination animal_vaccinations = 1;
+   int32 response_code = 2;
+}
+message CreateAnimalVaccinationResponse {
+   AnimalVaccination animal_vaccination = 1;
+   int32 response_code = 2;
+}
+message UpdateAnimalVaccinationResponse {
+   AnimalVaccination animal_vaccination = 1;
+   int32 response_code = 2;
+}
+message DeleteAnimalVaccinationResponse {
+   bool success = 1;
+   int32 response_code = 2;
+}
+// AnimalVaccination message
+message AnimalVaccination {
+   optional int32 id = 1;
+   int32 animal_id = 2;
+   int32 vaccination_id = 3;
+   optional bool is_done = 4;
+   optional string vaccination_done_on_date = 5;
+   optional string due_date = 6;
+   optional int32 facility_id = 7;
+}
