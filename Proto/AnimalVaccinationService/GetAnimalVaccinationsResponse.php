@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAnimalVaccinationsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated .AnimalVaccinationServicePackage.AnimalVaccination animal_vaccinations = 1;</code>
+     * Generated from protobuf field <code>repeated .AnimalVaccinationServicePackage.TemplateAnimalVaccination animal_vaccinations = 1;</code>
      */
     private $animal_vaccinations;
     /**
@@ -30,7 +30,7 @@ class GetAnimalVaccinationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Proto\AnimalVaccinationService\AnimalVaccination>|\Google\Protobuf\Internal\RepeatedField $animal_vaccinations
+     *     @type array<\Proto\AnimalVaccinationService\TemplateAnimalVaccination>|\Google\Protobuf\Internal\RepeatedField $animal_vaccinations
      *     @type int $response_code
      * }
      */
@@ -40,7 +40,7 @@ class GetAnimalVaccinationsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .AnimalVaccinationServicePackage.AnimalVaccination animal_vaccinations = 1;</code>
+     * Generated from protobuf field <code>repeated .AnimalVaccinationServicePackage.TemplateAnimalVaccination animal_vaccinations = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAnimalVaccinations()
@@ -49,13 +49,13 @@ class GetAnimalVaccinationsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .AnimalVaccinationServicePackage.AnimalVaccination animal_vaccinations = 1;</code>
-     * @param array<\Proto\AnimalVaccinationService\AnimalVaccination>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .AnimalVaccinationServicePackage.TemplateAnimalVaccination animal_vaccinations = 1;</code>
+     * @param array<\Proto\AnimalVaccinationService\TemplateAnimalVaccination>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnimalVaccinations($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Proto\AnimalVaccinationService\AnimalVaccination::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Proto\AnimalVaccinationService\TemplateAnimalVaccination::class);
         $this->animal_vaccinations = $arr;
 
         return $this;

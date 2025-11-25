@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAnimalVaccinationResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.AnimalVaccinationServicePackage.AnimalVaccination animal_vaccination = 1;</code>
+     * Generated from protobuf field <code>.AnimalVaccinationServicePackage.TemplateAnimalVaccination animal_vaccination = 1;</code>
      */
     protected $animal_vaccination = null;
     /**
@@ -28,7 +28,7 @@ class CreateAnimalVaccinationResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Proto\AnimalVaccinationService\AnimalVaccination $animal_vaccination
+     *     @type \Proto\AnimalVaccinationService\TemplateAnimalVaccination $animal_vaccination
      *     @type int $response_code
      * }
      */
@@ -38,8 +38,8 @@ class CreateAnimalVaccinationResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.AnimalVaccinationServicePackage.AnimalVaccination animal_vaccination = 1;</code>
-     * @return \Proto\AnimalVaccinationService\AnimalVaccination|null
+     * Generated from protobuf field <code>.AnimalVaccinationServicePackage.TemplateAnimalVaccination animal_vaccination = 1;</code>
+     * @return \Proto\AnimalVaccinationService\TemplateAnimalVaccination|null
      */
     public function getAnimalVaccination()
     {
@@ -57,13 +57,13 @@ class CreateAnimalVaccinationResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.AnimalVaccinationServicePackage.AnimalVaccination animal_vaccination = 1;</code>
-     * @param \Proto\AnimalVaccinationService\AnimalVaccination $var
+     * Generated from protobuf field <code>.AnimalVaccinationServicePackage.TemplateAnimalVaccination animal_vaccination = 1;</code>
+     * @param \Proto\AnimalVaccinationService\TemplateAnimalVaccination $var
      * @return $this
      */
     public function setAnimalVaccination($var)
     {
-        GPBUtil::checkMessage($var, \Proto\AnimalVaccinationService\AnimalVaccination::class);
+        GPBUtil::checkMessage($var, \Proto\AnimalVaccinationService\TemplateAnimalVaccination::class);
         $this->animal_vaccination = $var;
 
         return $this;

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAnimalScreeningsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated .AnimalScreeningServicePackage.AnimalScreening animal_screenings = 1;</code>
+     * Generated from protobuf field <code>repeated .AnimalScreeningServicePackage.TemplateAnimalScreening animal_screenings = 1;</code>
      */
     private $animal_screenings;
     /**
@@ -30,7 +30,7 @@ class GetAnimalScreeningsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Proto\AnimalScreeningService\AnimalScreening>|\Google\Protobuf\Internal\RepeatedField $animal_screenings
+     *     @type array<\Proto\AnimalScreeningService\TemplateAnimalScreening>|\Google\Protobuf\Internal\RepeatedField $animal_screenings
      *     @type int $response_code
      * }
      */
@@ -40,7 +40,7 @@ class GetAnimalScreeningsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .AnimalScreeningServicePackage.AnimalScreening animal_screenings = 1;</code>
+     * Generated from protobuf field <code>repeated .AnimalScreeningServicePackage.TemplateAnimalScreening animal_screenings = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAnimalScreenings()
@@ -49,13 +49,13 @@ class GetAnimalScreeningsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .AnimalScreeningServicePackage.AnimalScreening animal_screenings = 1;</code>
-     * @param array<\Proto\AnimalScreeningService\AnimalScreening>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .AnimalScreeningServicePackage.TemplateAnimalScreening animal_screenings = 1;</code>
+     * @param array<\Proto\AnimalScreeningService\TemplateAnimalScreening>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnimalScreenings($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Proto\AnimalScreeningService\AnimalScreening::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Proto\AnimalScreeningService\TemplateAnimalScreening::class);
         $this->animal_screenings = $arr;
 
         return $this;

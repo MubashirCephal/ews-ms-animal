@@ -16,26 +16,25 @@ message GetAnimalScreeningsRequest {
    int32 animal_id= 1;
 }
 message CreateAnimalScreeningRequest {
-   AnimalScreening animal_screening = 1;
+   TemplateAnimalScreening animal_screening = 1;
 }
 message UpdateAnimalScreeningRequest {
-   int32 id = 1;
-   AnimalScreening animal_screening = 2;
+   TemplateAnimalScreening animal_screening = 2;
 }
 message DeleteAnimalScreeningRequest {
-    int32 id = 1;
+    int32 animal_id = 1;
 }
 // Responses
 message GetAnimalScreeningsResponse {
-   repeated AnimalScreening animal_screenings = 1;
+   repeated TemplateAnimalScreening animal_screenings = 1;
    int32 response_code = 2;
 }
 message CreateAnimalScreeningResponse {
-   AnimalScreening animal_screening = 1;
+   TemplateAnimalScreening animal_screening = 1;
    int32 response_code = 2;
 }
 message UpdateAnimalScreeningResponse {
-   AnimalScreening animal_screening = 1;
+   TemplateAnimalScreening animal_screening = 1;
    int32 response_code = 2;
 }
 message DeleteAnimalScreeningResponse {
@@ -43,11 +42,11 @@ message DeleteAnimalScreeningResponse {
    int32 response_code = 2;
 }
 // AnimalScreening message
-message AnimalScreening {
+message TemplateAnimalScreening {
    optional int32 id = 1;
    int32 animal_id = 2;
    optional string screening_result = 3;
    optional string remarks = 4;
-   repeated int32 symptom_id = 5;
-   repeated int32 disease_id = 6;
+   repeated int32 symptom_ids = 5;
+   repeated int32 disease_ids = 6;
 }

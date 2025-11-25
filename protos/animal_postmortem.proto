@@ -1,0 +1,42 @@
+syntax = "proto3";
+option php_namespace ="Proto\\AnimalPostmortemService";
+option php_metadata_namespace = "Proto\\Metadata";
+
+package AnimalPostmortemPackage;
+service AnimalPostmortemService { 
+  rpc GetAnimalPostmortems (GetAnimalPostmortemsRequest) returns (GetAnimalPostmortemsResponse);
+  rpc CreateAnimalPostmortem (CreateAnimalPostmortemRequest) returns (CreateAnimalPostmortemResponse);
+}
+//requests
+message GetAnimalPostmortemsRequest{
+   int32 animal_id = 1;
+}
+message CreateAnimalPostmortemRequest{
+    TemplateAnimalPostmortem animal_postmortem =1;
+
+}
+//response
+
+message GetAnimalPostmortemsResponse{
+  repeated TemplateAnimalPostmortem animal_postmortem = 1;
+   int32 response_code = 2;
+
+}
+message CreateAnimalPostmortemResponse{
+    TemplateAnimalPostmortem animal_postmortem = 1;
+    int32 response_code = 2;
+}
+// animal postmortem message
+message TemplateAnimalPostmortem{
+    string date_of_post_mortem =3;
+    int32 no_of_animals_screened =4;
+    int32 no_of_animals_organs_collected=5;
+    repeated TemplateAnimalPostmortemDetail details =1;
+}
+message TemplateAnimalPostmortemDetail{
+    int32 animal_id = 1;
+    string examined_organ=2;
+    string observation=3;
+    string carcass_condemnation=4;
+    string comments=5;
+}

@@ -17,8 +17,7 @@ return new class extends Migration
             $table->foreignId('vaccination_id')->onDelete('set null');
             $table->foreignId('facility_id')->nullable();
             $table->boolean('is_done')->default(false);
-            // $table->boolean('is_done')->nullable()->default(null)->change();
-            $table->date('vaccination_done_on_date')->nullable();
+            $table->date('vaccination_date')->nullable();
             $table->date('due_date')->nullable();
 
             $table->timestamps();

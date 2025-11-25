@@ -14,11 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateAnimalScreeningRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>int32 id = 1;</code>
-     */
-    protected $id = 0;
-    /**
-     * Generated from protobuf field <code>.AnimalScreeningServicePackage.AnimalScreening animal_screening = 2;</code>
+     * Generated from protobuf field <code>.AnimalScreeningServicePackage.TemplateAnimalScreening animal_screening = 2;</code>
      */
     protected $animal_screening = null;
 
@@ -28,8 +24,7 @@ class UpdateAnimalScreeningRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $id
-     *     @type \Proto\AnimalScreeningService\AnimalScreening $animal_screening
+     *     @type \Proto\AnimalScreeningService\TemplateAnimalScreening $animal_screening
      * }
      */
     public function __construct($data = NULL) {
@@ -38,30 +33,8 @@ class UpdateAnimalScreeningRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int32 id = 1;</code>
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Generated from protobuf field <code>int32 id = 1;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setId($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>.AnimalScreeningServicePackage.AnimalScreening animal_screening = 2;</code>
-     * @return \Proto\AnimalScreeningService\AnimalScreening|null
+     * Generated from protobuf field <code>.AnimalScreeningServicePackage.TemplateAnimalScreening animal_screening = 2;</code>
+     * @return \Proto\AnimalScreeningService\TemplateAnimalScreening|null
      */
     public function getAnimalScreening()
     {
@@ -79,13 +52,13 @@ class UpdateAnimalScreeningRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.AnimalScreeningServicePackage.AnimalScreening animal_screening = 2;</code>
-     * @param \Proto\AnimalScreeningService\AnimalScreening $var
+     * Generated from protobuf field <code>.AnimalScreeningServicePackage.TemplateAnimalScreening animal_screening = 2;</code>
+     * @param \Proto\AnimalScreeningService\TemplateAnimalScreening $var
      * @return $this
      */
     public function setAnimalScreening($var)
     {
-        GPBUtil::checkMessage($var, \Proto\AnimalScreeningService\AnimalScreening::class);
+        GPBUtil::checkMessage($var, \Proto\AnimalScreeningService\TemplateAnimalScreening::class);
         $this->animal_screening = $var;
 
         return $this;

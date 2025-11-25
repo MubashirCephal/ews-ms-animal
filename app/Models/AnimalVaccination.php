@@ -8,15 +8,16 @@ class AnimalVaccination extends Model
 {
     protected $fillable = [
         'animal_id',
-        'vaccine_name',
+        'vaccination_id',
         'vaccination_date',
-        'next_due_date',
-        'administered_by',
-        'notes',
+        'due_date',
+        'is_done',
+        'facility_id',
     ];
 
     public function animal()
     {
         return $this->belongsTo(Animal::class);
     }
+    public $casts = [];
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validators\AnimalFacility;
+namespace App\Validators\AnimalPostmortem;
 
 use App\Classes\GrpcValidator;
 

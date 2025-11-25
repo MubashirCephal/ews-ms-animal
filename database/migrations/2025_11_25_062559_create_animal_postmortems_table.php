@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('animal_files', function (Blueprint $table) {
+        Schema::create('animal_postmortems', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('animal_id');
-            $table->string('filename');
+            $table->date('date_of_post_mortem');
+            $table->integer('no_of_animals_screened');
+            $table->integer('no_of_animals_organs_collected');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('animal_files');
+        Schema::dropIfExists('animal_postmortems');
     }
 };

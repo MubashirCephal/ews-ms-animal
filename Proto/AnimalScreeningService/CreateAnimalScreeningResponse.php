@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAnimalScreeningResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.AnimalScreeningServicePackage.AnimalScreening animal_screening = 1;</code>
+     * Generated from protobuf field <code>.AnimalScreeningServicePackage.TemplateAnimalScreening animal_screening = 1;</code>
      */
     protected $animal_screening = null;
     /**
@@ -28,7 +28,7 @@ class CreateAnimalScreeningResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Proto\AnimalScreeningService\AnimalScreening $animal_screening
+     *     @type \Proto\AnimalScreeningService\TemplateAnimalScreening $animal_screening
      *     @type int $response_code
      * }
      */
@@ -38,8 +38,8 @@ class CreateAnimalScreeningResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.AnimalScreeningServicePackage.AnimalScreening animal_screening = 1;</code>
-     * @return \Proto\AnimalScreeningService\AnimalScreening|null
+     * Generated from protobuf field <code>.AnimalScreeningServicePackage.TemplateAnimalScreening animal_screening = 1;</code>
+     * @return \Proto\AnimalScreeningService\TemplateAnimalScreening|null
      */
     public function getAnimalScreening()
     {
@@ -57,13 +57,13 @@ class CreateAnimalScreeningResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.AnimalScreeningServicePackage.AnimalScreening animal_screening = 1;</code>
-     * @param \Proto\AnimalScreeningService\AnimalScreening $var
+     * Generated from protobuf field <code>.AnimalScreeningServicePackage.TemplateAnimalScreening animal_screening = 1;</code>
+     * @param \Proto\AnimalScreeningService\TemplateAnimalScreening $var
      * @return $this
      */
     public function setAnimalScreening($var)
     {
-        GPBUtil::checkMessage($var, \Proto\AnimalScreeningService\AnimalScreening::class);
+        GPBUtil::checkMessage($var, \Proto\AnimalScreeningService\TemplateAnimalScreening::class);
         $this->animal_screening = $var;
 
         return $this;

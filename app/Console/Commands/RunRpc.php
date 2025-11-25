@@ -3,9 +3,13 @@
 namespace App\Console\Commands;
 
 use App\GrpcServices\GrpcAnimalFacilityService;
+use App\GrpcServices\GrpcAnimalPostmortemService;
+use App\GrpcServices\GrpcAnimalScreeningService;
 use App\GrpcServices\GrpcAnimalService;
+use App\GrpcServices\GrpcAnimalVaccinationService;
 use App\GrpcServices\GrpcBreedService;
 use App\GrpcServices\GrpcSpeciesService;
+use App\Services\AnimalScreeningService;
 use App\Services\BoilerPlatePingService;
 use Illuminate\Console\Command;
 
@@ -42,7 +46,9 @@ class RunRpc extends Command
         $server->handle(new GrpcBreedService());
         $server->handle(new GrpcAnimalService());
         $server->handle(new GrpcAnimalFacilityService());
-
+        $server->handle(new GrpcAnimalVaccinationService());
+        $server->handle(new GrpcAnimalScreeningService());
+        $server->handle(new GrpcAnimalPostmortemService());
         echo "Listening on port :".env('GRPC_RUN_PORT'). PHP_EOL;
         $server->run();
     }
